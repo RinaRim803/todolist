@@ -1,0 +1,24 @@
+form {
+  background-color: wheat;
+}
+.general {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: auto;
+  margin: auto;
+  background-color: aliceblue;
+}
+.test {
+  margin: 30%;
+  background-color: whitesmoke;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
