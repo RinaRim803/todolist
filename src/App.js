@@ -1,12 +1,15 @@
 import style from "./App.module.css";
 import { useState } from "react";
 import uniqueId from "lodash.uniqueid";
+import EnteredItemList from "./component/EnteredItemList";
 
 function App() {
   const [todoItem, setTodoItem] = useState("");
   const [todoList, setTodoList] = useState([]);
 
   const [isChecked, setIsChecked] = useState(false);
+  const [editedTodo, setEditedTodo] = useState("");
+  const [editable, setEditable] = useState(false);
 
   function submitValueHandler(e) {
     e.preventDefault();
@@ -20,31 +23,37 @@ function App() {
   }
 
   function checkTodoHandler(e) {
-    setIsChecked(e.target.checked);
-    console.log(e.target.checked)
-    console.log(isChecked)
+    setIsChecked(() => e.target.checked);
+    console.log(isChecked);
   }
 
   function deleteTodoHandler(event, key) {
-
+    event.preventDefault();
     if (isChecked) {
       const prevUserTodoList = todoList;
-      console.log("before", prevUserTodoList, "key", key);
-      prevUserTodoList.filter((item) => item.id !== key);
-      console.log("after", prevUserTodoList);
-      setTodoList(prevUserTodoList);
-      console.log(todoList);
+      setTodoList(() => {
+        return prevUserTodoList.filter((item) => item.id !== key);
+      });
     }
   }
-  function editTodoHandler(event, key) {
-    if (isChecked) {
-      // Edit
-    }
+  function editTodoHandler(e) {
+    e.preventDefault();
+    const editedValue = e.target.value;
+    const key = e.target.id;
+    setEditedTodo(editedValue);
+
+    const prevUserTodoList = todoList;
+    prevUserTodoList.map((item) => {
+      if (item.id === key) {
+        item.title = editedValue;
+      }
+    });
+    setTodoList(prevUserTodoList);
   }
 
   return (
     <div className={style.general}>
-      <div className={style}>
+      <div className={style.form}>
         <form onSubmit={submitValueHandler}>
           <input
             type="text"
@@ -58,11 +67,18 @@ function App() {
         {todoList.map((item) => {
           return (
             <li key={item.id}>
-              <input type="checkbox" checked={isChecked} onChange={checkTodoHandler} />
-              <span>{item.title}</span>
-              <button onClick={(event) => editTodoHandler(event, item.id)}>
-                Edit
-              </button>
+              <input type="checkbox" onChange={checkTodoHandler} />
+                {editable ? (
+                  <input
+                    type="text"
+                    id={item.id}
+                    value={item.title}
+                    onChange={(event) => editTodoHandler(event)}
+                  />
+                ) : (
+                  item.title
+                )}
+                <button onClick={()=>setEditable(!editable)}>Update</button>
               <button onClick={(event) => deleteTodoHandler(event, item.id)}>
                 Delete
               </button>
