@@ -1,7 +1,7 @@
 import style from "./App.module.css";
 import { useState } from "react";
 import uniqueId from "lodash.uniqueid";
-import EnteredItem from "./component/EnteredItem";
+import EnteredItemList from "./component/EnteredItemList";
 
 function App() {
   const [todoItem, setTodoItem] = useState("");
@@ -18,27 +18,9 @@ function App() {
     setTodoItem("");
   }
 
-  function deleteTodoHandler(event, key) {
-    const prevUserTodoList = todoList;
-    setTodoList(() => {
-      return prevUserTodoList.filter((item) => item.id !== key);
-    });
-  }
-  function editTodoHandler(e, id) {
-    const prevUserTodoList = [...todoList];
-    const todo = prevUserTodoList.find((item) => item.id === id);
-    todo.title = e.target.value;
-    setTodoList(prevUserTodoList);
-  }
-  function editableHandler(e, id) {
-    const newTodos = [...todoList];
-    const todo = newTodos.find((todo) => todo.id === id);
-    todo.editable = !todo.editable;
-    setTodoList(newTodos);
-  }
-
   return (
     <div className={style.general}>
+      <h1>Today Todolist</h1>
       <div className={style.form}>
         <form onSubmit={submitValueHandler}>
           <input
@@ -49,25 +31,11 @@ function App() {
         </form>
       </div>
 
-      <div className={style}>
+      <div className={style.columns}>
         {todoList.length ? (
-          <ul>
-            {todoList.map((todoItem) => {
-              return (
-                <EnteredItem
-                  key={todoItem.id}
-                  id={todoItem.id}
-                  title={todoItem.title}
-                  editable={todoItem.editable}
-                  onClickTodo={editableHandler}
-                  deleteTodo={deleteTodoHandler}
-                  editTodo={editTodoHandler}
-                />
-              );
-            })}
-          </ul>
+          <EnteredItemList data={todoList} />
         ) : (
-          "add todo lists"
+          <span>Add todo list</span>
         )}
       </div>
     </div>

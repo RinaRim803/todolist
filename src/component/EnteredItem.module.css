@@ -1,0 +1,12 @@
+.todoitem {
+  background-color: white;
+}
+
+.btn {
+  color: beige;
+  background-color: rgb(168, 74, 74);
+}
+
+.nested_div {
+  padding: 10px;
+}

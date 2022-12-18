@@ -1,24 +1,34 @@
-.form {
-  background-color: wheat;
-}
-.general {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: auto;
-  margin: auto;
-  background-color: aliceblue;
-}
-.test {
-  margin: 30%;
-  background-color: whitesmoke;
-}
-input[type="text"] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+.general {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.form {
+  background-color: rgb(41, 67, 72);
+  color: white;
+  padding: 5px;
+  border-radius: 0.5em;
+}
+
+.board {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3);
+  background-color: whitesmoke;
+  color: rgb(201, 145, 62);
+}
+
 li {
-    list-style: none;
+  list-style: none;
+}
+.columns {
+  display: grid;
+  gap: 1rem;
+  margin: 0 auto;
 }
