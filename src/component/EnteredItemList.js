@@ -1,15 +1,17 @@
 import { useState } from "react";
+import style from "./EnteredItemList.module.css";
 import EnteredItem from "./EnteredItem";
 
 function EnteredItemList(prop) {
   const [todoList, setTodoList] = useState(prop.data);
   
-
   function deleteTodoHandler(key) {
-    const prevUserTodoList = todoList;
-    setTodoList(() => {
-      return prevUserTodoList.filter((item) => item.id !== key);
-    });
+    const prevUserTodoList = [...todoList];
+    const newtodos = prevUserTodoList.filter((item) => item.id !== key);
+    console.log("delete :prev", prevUserTodoList);
+    console.log("delete :newtodos", newtodos);
+    setTodoList(()=>newtodos)
+    prop.updateTodo(newtodos)
   }
   function editTodoHandler(e, id) {
     const prevUserTodoList = [...todoList];

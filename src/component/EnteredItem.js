@@ -14,18 +14,10 @@ function EnteredItem(props) {
         ) : (
           <span>{props.title}</span>
         )}
-        <button
-          className={style.btn}
-          onClick={(e) => props.onClickTodo(e, props.id)}
-        >
+        <button onClick={(e) => props.onClickTodo(e, props.id)}>
           {props.editable ? "Enter" : "Update"}
         </button>
-        <button
-          className={style.btn}
-          onClick={(e) => props.deleteTodo(props.id)}
-        >
-          Delete
-        </button>
+        <button onClick={(e) => props.deleteTodo(props.id)}>Delete</button>
       </li>
     </div>
   );

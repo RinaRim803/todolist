@@ -17,23 +17,27 @@ function App() {
     setTodoList(prevUserTodoList);
     setTodoItem("");
   }
+  function updateTodoHandler(newItem) {
+    setTodoList(newItem);
+  }
 
   return (
-    <div className={style.general}>
-      <h1>Today Todolist</h1>
+    <div className={style.container}>
       <div className={style.form}>
+        <h1>Today Todolist</h1>
         <form onSubmit={submitValueHandler}>
           <input
             type="text"
             value={todoItem}
             onChange={(e) => setTodoItem(e.target.value)}
           />
+          <button className={style.btn}>Add</button>
         </form>
       </div>
 
       <div className={style.columns}>
         {todoList.length ? (
-          <EnteredItemList data={todoList} />
+          <EnteredItemList data={todoList} updateTodo={updateTodoHandler} />
         ) : (
           <span>Add todo list</span>
         )}
