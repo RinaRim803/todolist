@@ -2,6 +2,7 @@ import style from "./App.module.css";
 import { useState } from "react";
 import uniqueId from "lodash.uniqueid";
 import EnteredItemList from "./component/EnteredItemList";
+import { Card } from "@mui/material";
 
 function App() {
   const [todoItem, setTodoItem] = useState("");
@@ -34,14 +35,15 @@ function App() {
           <button className={style.btn}>Add</button>
         </form>
       </div>
-
-      <div className={style.columns}>
-        {todoList.length ? (
-          <EnteredItemList data={todoList} updateTodo={updateTodoHandler} />
-        ) : (
-          <span>Add todo list</span>
-        )}
-      </div>
+      <Card>
+        <div className={style.columns}>
+          {todoList.length ? (
+            <EnteredItemList data={todoList} updateTodo={updateTodoHandler} />
+          ) : (
+            <span>Add todo list</span>
+          )}
+        </div>
+      </Card>
     </div>
   );
 }
