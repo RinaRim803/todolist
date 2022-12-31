@@ -47,7 +47,7 @@ const myLogger = (store) => (next) => (action) => {
   next(action);
 };
 const store = createStore(
-  combineReducers({ MathReducer, UserReducer }),
+  combineReducers({ math: MathReducer, user: UserReducer }),
   {},
   applyMiddleware(logger)
 );

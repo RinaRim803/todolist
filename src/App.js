@@ -3,6 +3,7 @@ import { useState } from "react";
 import uniqueId from "lodash.uniqueid";
 import EnteredItemList from "./component/EnteredItemList";
 import { Card } from "@mui/material";
+import { connect } from "react-redux";
 
 function App() {
   const [todoItem, setTodoItem] = useState("");
@@ -48,4 +49,21 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    math: state.math,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setName: (name) => {
+      dispatch({
+        type: "SET_NAME",
+        payload: name,
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
