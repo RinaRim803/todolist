@@ -8,8 +8,6 @@ function EnteredItemList(prop) {
   function deleteTodoHandler(key) {
     const prevUserTodoList = [...todoList];
     const newtodos = prevUserTodoList.filter((item) => item.id !== key);
-    console.log("delete :prev", prevUserTodoList);
-    console.log("delete :newtodos", newtodos);
     setTodoList(()=>newtodos)
     prop.updateTodo(newtodos)
   }
