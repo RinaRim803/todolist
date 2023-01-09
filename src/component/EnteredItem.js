@@ -1,8 +1,8 @@
 import style from "./EnteredItem.module.css";
 function EnteredItem(props) {
   return (
-    <div className={style.nested_div}>
-      <li key={props.id}>
+    <li key={props.id} className={style.todoItem}>
+      <div className={style.content}>
         <input type="checkbox" />
         {props.editable ? (
           <input
@@ -14,12 +14,14 @@ function EnteredItem(props) {
         ) : (
           <span>{props.title}</span>
         )}
+      </div>
+      <div className={style.editButton}>
         <button onClick={(e) => props.onClickTodo(e, props.id)}>
           {props.editable ? "Enter" : "Update"}
         </button>
         <button onClick={(e) => props.deleteTodo(props.id)}>Delete</button>
-      </li>
-    </div>
+      </div>
+    </li>
   );
 }
 

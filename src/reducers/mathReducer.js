@@ -1,4 +1,4 @@
-const MathReducer = (state = { result: 1, lastValues: [] }, action) => {
+const mathReducer = (state = { result: 1, lastValues: [] }, action) => {
   switch (action.type) {
     case "ADD":
       state = {
@@ -14,8 +14,10 @@ const MathReducer = (state = { result: 1, lastValues: [] }, action) => {
         lastValues: [...state.lastValues, action.payload],
       };
       break;
+      default:
+        break;
   }
   return state;
 };
 
-export default MathReducer;
+export default mathReducer;

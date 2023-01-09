@@ -6,10 +6,10 @@ import App from "./App";
 import store from "./store/store";
 
 
-const myLogger = (store) => (next) => (action) => {
-  //   console.log("Logged Action: ", action);
-  next(action);
-};
+// const myLogger = (store) => (next) => (action) => {
+//   //   console.log("Logged Action: ", action);
+//   next(action);
+// };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

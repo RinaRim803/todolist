@@ -1,9 +1,9 @@
 import style from "./App.module.css";
 import { useState } from "react";
 import uniqueId from "lodash.uniqueid";
-import EnteredItemList from "./component/EnteredItemList";
-import { Card } from "@mui/material";
 import { connect } from "react-redux";
+
+import EnteredItemList from "./component/EnteredItemList";
 
 function App() {
   const [todoItem, setTodoItem] = useState("");
@@ -24,27 +24,24 @@ function App() {
   }
 
   return (
-    <div className={style.container}>
-      <div className={style.form}>
-        <h1>Today Todolist</h1>
-        <form onSubmit={submitValueHandler}>
-          <input
-            type="text"
-            value={todoItem}
-            onChange={(e) => setTodoItem(e.target.value)}
-          />
-          <button className={style.btn}>Add</button>
-        </form>
+    <div className={style.main}>
+      <span className={style.logo}>My Todolist</span>
+      <form onSubmit={submitValueHandler} className={style.addTodo}>
+        <span>New Item: </span>
+        <input
+          type="text"
+          value={todoItem}
+          onChange={(e) => setTodoItem(e.target.value)}
+        />
+        <button className={style.btn}>Add</button>
+      </form>
+      <div className={style.todo}>
+        {todoList.length ? (
+          <EnteredItemList data={todoList} updateTodo={updateTodoHandler} />
+        ) : (
+          <span>Add todo list</span>
+        )}
       </div>
-      <Card>
-        <div className={style.columns}>
-          {todoList.length ? (
-            <EnteredItemList data={todoList} updateTodo={updateTodoHandler} />
-          ) : (
-            <span>Add todo list</span>
-          )}
-        </div>
-      </Card>
     </div>
   );
 }

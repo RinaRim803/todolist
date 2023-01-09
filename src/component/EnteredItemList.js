@@ -25,7 +25,7 @@ function EnteredItemList(prop) {
   }
 
   return (
-    <ul>
+    <ul className={style.todoList}>
       {prop.data.map((todoItem) => {
         return (
           <EnteredItem
