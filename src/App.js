@@ -27,13 +27,15 @@ function App() {
     <div className={style.main}>
       <span className={style.logo}>My Todolist</span>
       <form onSubmit={submitValueHandler} className={style.addTodo}>
-        <span>New Item: </span>
-        <input
-          type="text"
-          value={todoItem}
-          onChange={(e) => setTodoItem(e.target.value)}
-        />
-        <button className={style.btn}>Add</button>
+        <div id="newTodo">
+          <input
+            type="text"
+            value={todoItem}
+            onChange={(e) => setTodoItem(e.target.value)}
+          />
+        </div>
+          <button className={style.btn}>Add</button>
+
       </form>
       <div className={style.todo}>
         {todoList.length ? (

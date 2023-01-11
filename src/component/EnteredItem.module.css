@@ -1,10 +1,10 @@
 .todoItem{
   display: flex;
   justify-content: space-between;
-  padding: 8px;
   margin: 8px;
-  gap: 4px;
+  gap: 8px;
   align-items: center;
+  background-color: antiquewhite;
 }
 
 .content{
@@ -16,8 +16,10 @@
 .editButton{
   display: flex;
   padding: 8px;
+  gap: 8px;
 }
 
-input[type="text"] {
-  width: 500px;
+.content input[type="text"] {
+  width: 300px;
+  margin: 0;
 }
